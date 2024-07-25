@@ -17,6 +17,8 @@ export function App(){
   }, [todos])
   const todoTaskRef = useRef();
   
+  // properties are sent down from the top component to the inside one
+  // events  get popped as a bubble or triggered from the lowest component to the higher in the structure
   const handleTodoAdd = () => {
     const tarea = todoTaskRef.current.value;
     if(tarea === "") return;
