@@ -24,6 +24,7 @@ export function App(){
     // setTodos([...todos, newTodo])
   }
 
+
   const toggleTodo = (id) => {
     const newTodos = [...todos];
     const todo = newTodos.find(todo => todo.id === id);
@@ -37,6 +38,7 @@ export function App(){
     <input type="text" ref={todoTaskRef} placeholder="Nueva tarea" />
     <button onClick={handleTodoAdd}>Add</button>
     <button>Delete</button>
+    <div>You have {todos.filter((todo) => !todo.completed).length} left pending to dos</div>
   </Fragment>
 )
 }
