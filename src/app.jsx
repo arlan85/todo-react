@@ -1,9 +1,20 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { TodoList } from "./components/TodoList";
 
+const TODOS_KEY = "todoApp.todos";
+
 export function App(){
   const [todos, setTodos] = useState([{id: uuidv4(), task: "tarea 1", completed: false}]);
+
+  useEffect(() => { //callback function and default values on init values
+    const storedTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    if(storedTodos) setTodos(storedTodos);
+  }, [])
+  
+  useEffect(() => { //callback function to sotre data on changes made
+    localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+  }, [todos])
   const todoTaskRef = useRef();
   
   const handleTodoAdd = () => {
